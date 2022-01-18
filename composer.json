@@ -1,0 +1,23 @@
+{
+    "name": "hexlet/code",
+    "require": {
+        "docopt/docopt": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "authors": [
+        {
+            "name": "Aleksandr Baranov",
+            "email": "a.n.baranov@outlook.com"
+        }
+    ],
+    "bin": [
+        "bin/gendiff"
+    ],
+    "autoload": {
+        "files": [
+            "src/Cli.php"
+        ]
+    }
+}
