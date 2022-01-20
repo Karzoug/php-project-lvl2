@@ -2,7 +2,7 @@
 
 namespace Gendiff\Cli;
 
-function start()
+function input()
 {
     $sdoc = <<<DOC
 Generate diff
@@ -16,8 +16,18 @@ Options:
     -h --help                     Show this screen
     -v --version                  Show version
     --format <fmt>                Report format [default: stylish]
-
 DOC;
 
-    $args = (new \Docopt\Handler)->handle($sdoc);
+    $args = \Docopt::handle($sdoc, array('version' => '1.0'));
+
+    $fileName1 = $args['<firstFile>'];
+    $fileName2 = $args['<secondFile>'];
+    $format = $args['--format'];
+
+    return ["fileName1" => $fileName1, "fileName2" => $fileName2, "format" => $format];
+}
+
+function output($data)
+{
+    echo $data;
 }
