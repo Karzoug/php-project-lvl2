@@ -1,2 +1,2 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Karzoug/php-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Karzoug/php-project-lvl2/actions)
+### Tests, test coverage and linter status
+[![Actions Status](https://github.com/Karzoug/php-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Karzoug/php-project-lvl2/actions) [![lint](https://github.com/Karzoug/php-project-lvl2/actions/workflows/workflow.yml/badge.svg)](https://github.com/Karzoug/php-project-lvl2/actions/workflows/workflow.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/44edb686ef845e780e6f/maintainability)](https://codeclimate.com/github/Karzoug/php-project-lvl2/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/44edb686ef845e780e6f/test_coverage)](https://codeclimate.com/github/Karzoug/php-project-lvl2/test_coverage)
