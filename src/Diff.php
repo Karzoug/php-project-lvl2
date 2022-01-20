@@ -14,19 +14,19 @@ function getDiff($data1, $data2)
 
     foreach ($mergedJsonDict as $key => $value) {
         if (!array_key_exists($key, $jsonDict1)) {
-            $result[] = "+ {$key}: " . toString($value);
+            $result[] = "  + {$key}: " . toString($value);
             continue;
         }
         if (!array_key_exists($key, $jsonDict2)) {
-            $result[] = "- {$key}: " . toString($value);
+            $result[] = "  - {$key}: " . toString($value);
             continue;
         }
 
         if ($jsonDict1[$key] === $jsonDict2[$key]) {
-            $result[] = "  {$key}: " . toString($value);
+            $result[] = "    {$key}: " . toString($value);
         } else {
-            $result[] = "- {$key}: " . toString($jsonDict1[$key]);
-            $result[] = "+ {$key}: " . toString($jsonDict2[$key]);
+            $result[] = "  - {$key}: " . toString($jsonDict1[$key]);
+            $result[] = "  + {$key}: " . toString($jsonDict2[$key]);
         }
     }
 
