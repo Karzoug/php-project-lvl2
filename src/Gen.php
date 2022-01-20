@@ -9,9 +9,9 @@ use Gendiff\Diff;
 function run()
 {
     $cliData = Cli\input();
-    
+
     $diff = genDiff($cliData[0], $cliData[1]);
-    
+
     Cli\output($diff);
 }
 
