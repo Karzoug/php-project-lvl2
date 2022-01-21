@@ -6,6 +6,8 @@ use Gendiff\Cli;
 use Gendiff\IO;
 use Gendiff\Diff;
 
+use function Gendiff\Parsers\parse;
+
 function run()
 {
     $cliData = Cli\input();
@@ -17,11 +19,20 @@ function run()
 
 function genDiff($fileName1, $fileName2)
 {
-    $filesData = IO\getDataFromFiles($fileName1, $fileName2);
+    $file1Data = IO\getDataFromFile($fileName1);
+    $file2Data = IO\getDataFromFile($fileName2);
 
-    if ($filesData === false) {
+    if (($file1Data === false) || ($file2Data === false)) {
         return;
     }
 
-    return Diff\getDiff($filesData[0], $filesData[1]);
+    $format = "json";
+    if (str_ends_with(strtolower($fileName1), ".yml") || str_ends_with(strtolower($fileName1), ".yaml")) {
+        $format = "yaml";
+    }
+
+    $dictFile1 = parse($file1Data, $format);
+    $dictFile2 = parse($file2Data, $format);
+
+    return Diff\getDiff($dictFile1, $dictFile2);
 }

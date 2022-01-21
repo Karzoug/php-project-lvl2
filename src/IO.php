@@ -2,18 +2,17 @@
 
 namespace Gendiff\IO;
 
-function getDataFromFiles($fileName1, $fileName2)
+function getDataFromFile($fileName)
 {
-    if (!file_exists($fileName1) || !file_exists($fileName2)) {
+    if (!file_exists($fileName)) {
         return false;
     }
 
-    $data1 = file_get_contents($fileName1);
-    $data2 = file_get_contents($fileName2);
+    $data = file_get_contents($fileName);
 
-    if ($data2 === false || $data1 === false) {
+    if ($data === false) {
         return false;
     }
 
-    return [$data1, $data2];
+    return $data;
 }

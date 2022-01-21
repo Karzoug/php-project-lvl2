@@ -2,31 +2,28 @@
 
 namespace Gendiff\Diff;
 
-function getDiff($data1, $data2)
+function getDiff($dict1, $dict2)
 {
-    $jsonDict1 = json_decode($data1, true);
-    $jsonDict2 = json_decode($data2, true);
-
-    $mergedJsonDict = array_merge($jsonDict1, $jsonDict2);
+    $mergedJsonDict = array_merge($dict1, $dict2);
     ksort($mergedJsonDict);
 
     $result = [];
 
     foreach ($mergedJsonDict as $key => $value) {
-        if (!array_key_exists($key, $jsonDict1)) {
+        if (!array_key_exists($key, $dict1)) {
             $result[] = "  + {$key}: " . toString($value);
             continue;
         }
-        if (!array_key_exists($key, $jsonDict2)) {
+        if (!array_key_exists($key, $dict2)) {
             $result[] = "  - {$key}: " . toString($value);
             continue;
         }
 
-        if ($jsonDict1[$key] === $jsonDict2[$key]) {
+        if ($dict1[$key] === $dict2[$key]) {
             $result[] = "    {$key}: " . toString($value);
         } else {
-            $result[] = "  - {$key}: " . toString($jsonDict1[$key]);
-            $result[] = "  + {$key}: " . toString($jsonDict2[$key]);
+            $result[] = "  - {$key}: " . toString($dict1[$key]);
+            $result[] = "  + {$key}: " . toString($dict2[$key]);
         }
     }
 

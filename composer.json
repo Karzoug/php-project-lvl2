@@ -1,7 +1,8 @@
 {
     "name": "hexlet/code",
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "symfony/yaml": "^6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -21,7 +22,8 @@
             "src/Cli.php",
             "src/Diff.php",
             "src/IO.php",
-            "src/Gen.php"
+            "src/Gen.php",
+            "src/Parsers.php"
         ]
     }
 }
