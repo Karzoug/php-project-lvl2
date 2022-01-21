@@ -10,7 +10,7 @@ function run()
 {
     $cliData = Cli\input();
 
-    $diff = genDiff($cliData[0], $cliData[1]);
+    $diff = genDiff($cliData["fileName1"], $cliData["fileName2"]);
 
     Cli\output($diff);
 }
