@@ -1,6 +1,6 @@
 <?php
 
-namespace Gendiff\Cli;
+namespace Differ\Cli;
 
 function input()
 {

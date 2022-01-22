@@ -1,6 +1,6 @@
 <?php
 
-namespace Gendiff\IO;
+namespace Differ\IO;
 
 function getDataFromFile($fileName)
 {

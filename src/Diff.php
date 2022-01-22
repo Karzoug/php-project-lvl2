@@ -1,6 +1,6 @@
 <?php
 
-namespace Gendiff\Diff;
+namespace Differ\Diff;
 
 const ADDED = 'added';
 const REMOVED = 'removed';

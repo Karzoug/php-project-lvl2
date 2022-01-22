@@ -1,13 +1,13 @@
 <?php
 
-namespace Gendiff\Gen;
+namespace Differ\Differ;
 
-use Gendiff\Cli;
-use Gendiff\IO;
-use Gendiff\Diff;
+use Differ\Cli;
+use Differ\IO;
+use Differ\Diff;
 
-use function Gendiff\Parsers\parse;
-use function Gendiff\Formatters\format;
+use function Differ\Parsers\parse;
+use function Differ\Formatters\format;
 
 function run()
 {
