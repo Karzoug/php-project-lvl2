@@ -4,10 +4,16 @@ namespace Gendiff\Formatters;
 
 function format($dict, $format)
 {
-    if ($format === "plain") {
-        return Plain\format($dict);
-    } else {
-        return Stylish\format($dict);
+    switch ($format) {
+        case 'plain':
+            return Plain\format($dict);
+            break;
+        case 'json':
+            return Json\format($dict);
+            break;
+        default:
+            return Stylish\format($dict);
+            break;
     }
 
     return "";
