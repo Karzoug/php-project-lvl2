@@ -23,7 +23,8 @@
             "src/Diff.php",
             "src/IO.php",
             "src/Gen.php",
-            "src/Parsers.php"
+            "src/Parsers.php",
+            "src/Format.php"
         ]
     }
 }

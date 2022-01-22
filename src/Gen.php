@@ -7,17 +7,18 @@ use Gendiff\IO;
 use Gendiff\Diff;
 
 use function Gendiff\Parsers\parse;
+use function Gendiff\Format\format;
 
 function run()
 {
     $cliData = Cli\input();
 
-    $diff = genDiff($cliData["fileName1"], $cliData["fileName2"]);
+    $diff = genDiff($cliData["fileName1"], $cliData["fileName2"], $cliData["format"]);
 
     Cli\output($diff);
 }
 
-function genDiff($fileName1, $fileName2)
+function genDiff($fileName1, $fileName2, $formatOutput = "stylish")
 {
     $file1Data = IO\getDataFromFile($fileName1);
     $file2Data = IO\getDataFromFile($fileName2);
@@ -26,13 +27,17 @@ function genDiff($fileName1, $fileName2)
         return;
     }
 
-    $format = "json";
+    $formatFile = "json";
     if (str_ends_with(strtolower($fileName1), ".yml") || str_ends_with(strtolower($fileName1), ".yaml")) {
-        $format = "yaml";
+        $formatFile = "yaml";
     }
 
-    $dictFile1 = parse($file1Data, $format);
-    $dictFile2 = parse($file2Data, $format);
+    $dictFile1 = parse($file1Data, $formatFile);
+    $dictFile2 = parse($file2Data, $formatFile);
 
-    return Diff\getDiff($dictFile1, $dictFile2);
+    $diff = Diff\getDiff($dictFile1, $dictFile2);
+
+    $formatDiff = format($diff, $formatOutput);
+
+    return $formatDiff;
 }
