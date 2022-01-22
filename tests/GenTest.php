@@ -14,48 +14,47 @@ class GenTest extends TestCase
         return realpath(implode('/', $parts));
     }
 
-    public function testPlainJSON1(): void
+    public function testJsonStylish(): void
     {
-         
         $fileName1 = $this->getFixtureFullPath("file1.json");
         $fileName2 = $this->getFixtureFullPath("file2.JSON");
-        $this->assertStringEqualsFile($this->getFixtureFullPath("result12.txt"), genDiff($fileName1, $fileName2));
-    }
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result12Stylish.txt"), genDiff($fileName1, $fileName2));
 
-    public function testPlainJSON2(): void
-    {
         $fileName1 = $this->getFixtureFullPath("file1.json");
         $fileName2 = $this->getFixtureFullPath("blank.json");
-        $this->assertStringEqualsFile($this->getFixtureFullPath("result1blank.txt"), genDiff($fileName1, $fileName2));
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result1blankStylish.txt"), genDiff($fileName1, $fileName2));
+
+        $fileName1 = $this->getFixtureFullPath("file3.json");
+        $fileName2 = $this->getFixtureFullPath("file4.json");
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result34Stylish.txt"), genDiff($fileName1, $fileName2));
     }
 
-    public function testPlainYAML1(): void
+    public function testYamlStylish(): void
     {
         $fileName1 = $this->getFixtureFullPath("file1.yml");
         $fileName2 = $this->getFixtureFullPath("file2.YAML");
-        $this->assertStringEqualsFile($this->getFixtureFullPath("result12.txt"), genDiff($fileName1, $fileName2));
-    }
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result12Stylish.txt"), genDiff($fileName1, $fileName2));
 
-    public function testPlainYAML2(): void
-    {
         $fileName1 = $this->getFixtureFullPath("file1.yml");
         $fileName2 = $this->getFixtureFullPath("blank.yaml");
-        $this->assertStringEqualsFile($this->getFixtureFullPath("result1blank.txt"), genDiff($fileName1, $fileName2));
-    }
-
-    public function testTreeJSON1(): void
-    {
-         
-        $fileName1 = $this->getFixtureFullPath("file3.json");
-        $fileName2 = $this->getFixtureFullPath("file4.json");
-        $this->assertStringEqualsFile($this->getFixtureFullPath("result34.txt"), genDiff($fileName1, $fileName2));
-    }
-
-    public function testTreeYAML1(): void
-    {
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result1blankStylish.txt"), genDiff($fileName1, $fileName2));
          
         $fileName1 = $this->getFixtureFullPath("file3.yml");
         $fileName2 = $this->getFixtureFullPath("file4.yaml");
-        $this->assertStringEqualsFile($this->getFixtureFullPath("result34.txt"), genDiff($fileName1, $fileName2));
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result34Stylish.txt"), genDiff($fileName1, $fileName2));
+    }
+
+    public function testJsonPlain(): void
+    {
+        $fileName1 = $this->getFixtureFullPath("file3.json");
+        $fileName2 = $this->getFixtureFullPath("file4.json");
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result34Plain.txt"), genDiff($fileName1, $fileName2, "plain"));
+    }
+
+    public function testYamlPlain(): void
+    {        
+        $fileName1 = $this->getFixtureFullPath("file3.yml");
+        $fileName2 = $this->getFixtureFullPath("file4.yaml");
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result34Plain.txt"), genDiff($fileName1, $fileName2, "plain"));
     }
 }
