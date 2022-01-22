@@ -38,7 +38,7 @@ class GenTest extends TestCase
         $fileName1 = $this->getFixtureFullPath("file1.yml");
         $fileName2 = $this->getFixtureFullPath("blank.yaml");
         $this->assertStringEqualsFile($this->getFixtureFullPath("result1blankStylish.txt"), genDiff($fileName1, $fileName2));
-         
+
         $fileName1 = $this->getFixtureFullPath("file3.yml");
         $fileName2 = $this->getFixtureFullPath("file4.yaml");
         $this->assertStringEqualsFile($this->getFixtureFullPath("result34Stylish.txt"), genDiff($fileName1, $fileName2));
@@ -52,7 +52,7 @@ class GenTest extends TestCase
     }
 
     public function testYamlPlain(): void
-    {        
+    {
         $fileName1 = $this->getFixtureFullPath("file3.yml");
         $fileName2 = $this->getFixtureFullPath("file4.yaml");
         $this->assertStringEqualsFile($this->getFixtureFullPath("result34Plain.txt"), genDiff($fileName1, $fileName2, "plain"));
