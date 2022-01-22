@@ -10,7 +10,7 @@ const NESTED = 'nested';
 
 function format($dict)
 {
-    return implode("\n", step($dict, "")) . "\n";
+    return implode("\n", step($dict, ""));
 }
 
 function step($dict, $path)
