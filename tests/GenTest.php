@@ -14,7 +14,7 @@ class GenTest extends TestCase
         return realpath(implode('/', $parts));
     }
 
-    public function testMainJSON1(): void
+    public function testPlainJSON1(): void
     {
          
         $fileName1 = $this->getFixtureFullPath("file1.json");
@@ -22,24 +22,40 @@ class GenTest extends TestCase
         $this->assertStringEqualsFile($this->getFixtureFullPath("result12.txt"), genDiff($fileName1, $fileName2));
     }
 
-    public function testMainJSON2(): void
+    public function testPlainJSON2(): void
     {
         $fileName1 = $this->getFixtureFullPath("file1.json");
         $fileName2 = $this->getFixtureFullPath("blank.json");
         $this->assertStringEqualsFile($this->getFixtureFullPath("result1blank.txt"), genDiff($fileName1, $fileName2));
     }
 
-    public function testMainYAML1(): void
+    public function testPlainYAML1(): void
     {
         $fileName1 = $this->getFixtureFullPath("file1.yml");
         $fileName2 = $this->getFixtureFullPath("file2.YAML");
         $this->assertStringEqualsFile($this->getFixtureFullPath("result12.txt"), genDiff($fileName1, $fileName2));
     }
 
-    public function testMainYAML2(): void
+    public function testPlainYAML2(): void
     {
         $fileName1 = $this->getFixtureFullPath("file1.yml");
         $fileName2 = $this->getFixtureFullPath("blank.yaml");
         $this->assertStringEqualsFile($this->getFixtureFullPath("result1blank.txt"), genDiff($fileName1, $fileName2));
+    }
+
+    public function testTreeJSON1(): void
+    {
+         
+        $fileName1 = $this->getFixtureFullPath("file3.json");
+        $fileName2 = $this->getFixtureFullPath("file4.json");
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result34.txt"), genDiff($fileName1, $fileName2));
+    }
+
+    public function testTreeYAML1(): void
+    {
+         
+        $fileName1 = $this->getFixtureFullPath("file3.yml");
+        $fileName2 = $this->getFixtureFullPath("file4.yaml");
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result34.txt"), genDiff($fileName1, $fileName2));
     }
 }
