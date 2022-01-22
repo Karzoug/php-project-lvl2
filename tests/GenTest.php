@@ -57,4 +57,11 @@ class GenTest extends TestCase
         $fileName2 = $this->getFixtureFullPath("file4.yaml");
         $this->assertStringEqualsFile($this->getFixtureFullPath("result34Plain.txt"), genDiff($fileName1, $fileName2, "plain"));
     }
+
+    public function testJsonJson(): void
+    {
+        $fileName1 = $this->getFixtureFullPath("file3.json");
+        $fileName2 = $this->getFixtureFullPath("file4.json");
+        $this->assertStringEqualsFile($this->getFixtureFullPath("result34Json.txt"), genDiff($fileName1, $fileName2, "json"));
+    }
 }
