@@ -7,7 +7,7 @@ use Gendiff\IO;
 use Gendiff\Diff;
 
 use function Gendiff\Parsers\parse;
-use function Gendiff\Format\format;
+use function Gendiff\Formatters\format;
 
 function run()
 {

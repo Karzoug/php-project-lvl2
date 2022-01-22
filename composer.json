@@ -24,7 +24,9 @@
             "src/IO.php",
             "src/Gen.php",
             "src/Parsers.php",
-            "src/Format.php"
+            "src/Formatters.php",
+            "src/Formatters/Plain.php",
+            "src/Formatters/Stylish.php"
         ]
     }
 }
