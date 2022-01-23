@@ -27,9 +27,10 @@ function genDiff(string $fileName1, string $fileName2, string $formatOutput = "s
         return;
     }
 
-    $formatFile = "json";
     if (str_ends_with(strtolower($fileName1), ".yml") || str_ends_with(strtolower($fileName1), ".yaml")) {
         $formatFile = "yaml";
+    } else {
+        $formatFile = "json";
     }
 
     $dictFile1 = parse($file1Data, $formatFile);
