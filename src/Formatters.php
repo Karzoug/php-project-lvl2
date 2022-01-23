@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters;
 
-function format($dict, $format)
+function format(array $dict, string $format)
 {
     switch ($format) {
         case 'plain':
@@ -15,6 +15,4 @@ function format($dict, $format)
             return Stylish\format($dict);
             break;
     }
-
-    return "";
 }

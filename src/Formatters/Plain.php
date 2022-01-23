@@ -8,12 +8,12 @@ const UNCHANGED = 'unchanged';
 const UPDATED = 'updated';
 const NESTED = 'nested';
 
-function format($dict)
+function format(array $dict)
 {
     return implode("\n", step($dict, ""));
 }
 
-function step($dict, $path)
+function step(array $dict, string $path)
 {
     return array_reduce($dict, function ($acc, $node) use ($path) {
         if ($node["status"] === REMOVED) {
@@ -36,7 +36,7 @@ function step($dict, $path)
     }, []);
 }
 
-function toString($value)
+function toString(mixed $value)
 {
     if (is_array($value)) {
         return "[complex value]";

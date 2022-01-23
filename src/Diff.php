@@ -8,59 +8,57 @@ const UPDATED = 'updated';
 const UNCHANGED = 'unchanged';
 const NESTED = 'nested';
 
-function getDiff($dict1, $dict2)
+function getDiff(array $dict1, array $dict2)
 {
     $dictKeys = array_unique(array_merge(array_keys($dict1), array_keys($dict2)));
     sort($dictKeys);
 
-    $result = [];
-
-    foreach ($dictKeys as $key) {
+    $result = array_reduce($dictKeys, function ($acc, $key) use ($dict1, $dict2) {
         if (!array_key_exists($key, $dict1)) {
-            $result[] = [
+            $acc[] = [
                 "key" => $key,
                 "before" => null,
                 "after" => $dict2[$key],
                 "children" => null,
                 "status" => ADDED
             ];
-            continue;
+            return $acc;
         }
         if (!array_key_exists($key, $dict2)) {
-            $result[] = [
+            $acc[] = [
                 "key" => $key,
                 "before" => $dict1[$key],
                 "after" => null,
                 "children" => null,
                 "status" => REMOVED
             ];
-            continue;
+            return $acc;
         }
 
         if (is_array($dict1[$key]) ^ is_array($dict2[$key])) {
-            $result[] = [
+            $acc[] = [
                 "key" => $key,
                 "before" => $dict1[$key],
                 "after" => $dict2[$key],
                 "children" => null,
                 "status" => UPDATED
             ];
-            continue;
+            return $acc;
         }
 
         if (is_array($dict1[$key]) && is_array($dict2[$key])) {
-            $result[] = [
+            $acc[] = [
                 "key" => $key,
                 "before" => $dict1[$key],
                 "after" => $dict2[$key],
                 "children" => getDiff($dict1[$key], $dict2[$key]),
                 "status" => NESTED
             ];
-            continue;
+            return $acc;
         }
 
         if ($dict1[$key] === $dict2[$key]) {
-            $result[] = [
+            $acc[] = [
                 "key" => $key,
                 "before" => $dict1[$key],
                 "after" => $dict2[$key],
@@ -68,7 +66,7 @@ function getDiff($dict1, $dict2)
                 "status" => UNCHANGED
             ];
         } else {
-            $result[] = [
+            $acc[] = [
                 "key" => $key,
                 "before" => $dict1[$key],
                 "after" => $dict2[$key],
@@ -76,7 +74,8 @@ function getDiff($dict1, $dict2)
                 "status" => UPDATED
             ];
         }
-    }
+        return $acc;
+    }, []);
 
     return $result;
 }

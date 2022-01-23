@@ -2,7 +2,7 @@
 
 namespace Differ\IO;
 
-function getDataFromFile($fileName)
+function getDataFromFile(string $fileName)
 {
     if (!file_exists($fileName)) {
         return false;

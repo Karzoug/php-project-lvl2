@@ -8,12 +8,12 @@ const UNCHANGED = 'unchanged';
 const UPDATED = 'updated';
 const NESTED = 'nested';
 
-function format($dict)
+function format(array $dict)
 {
     return "{\n" . implode("\n", step($dict, 0)) . "\n}";
 }
 
-function step($dict, $level)
+function step(array $dict, int $level)
 {
     return array_reduce($dict, function ($acc, $node) use ($level) {
         if ($node["status"] === UPDATED || $node["status"] === REMOVED || $node["status"] === UNCHANGED) {
@@ -60,7 +60,7 @@ function step($dict, $level)
     }, []);
 }
 
-function getChildrenTree($tree, $level)
+function getChildrenTree(array $tree, int $level)
 {
     $acc = [];
     foreach ($tree as $key => $value) {
@@ -79,7 +79,7 @@ function getChildrenTree($tree, $level)
     return $acc;
 }
 
-function getIndent($level, $status = UNCHANGED)
+function getIndent(int $level, string $status = UNCHANGED)
 {
     if ($level === 0) {
         return "";
@@ -95,7 +95,7 @@ function getIndent($level, $status = UNCHANGED)
     }
 }
 
-function toString($value)
+function toString(mixed $value)
 {
     if (is_bool($value)) {
         return ($value) ? "true" : "false";

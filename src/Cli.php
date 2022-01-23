@@ -27,7 +27,7 @@ DOC;
     return ["fileName1" => $fileName1, "fileName2" => $fileName2, "format" => $format];
 }
 
-function output($data)
+function output(string $data)
 {
     echo $data;
 }

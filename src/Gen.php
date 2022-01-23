@@ -18,7 +18,7 @@ function run()
     Cli\output($diff);
 }
 
-function genDiff($fileName1, $fileName2, $formatOutput = "stylish")
+function genDiff(string $fileName1, string $fileName2, string $formatOutput = "stylish")
 {
     $file1Data = IO\getDataFromFile($fileName1);
     $file2Data = IO\getDataFromFile($fileName2);
