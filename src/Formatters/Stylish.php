@@ -2,11 +2,11 @@
 
 namespace Differ\Formatters\Stylish;
 
-const ADDED = 'added';
-const REMOVED = 'removed';
-const UNCHANGED = 'unchanged';
-const UPDATED = 'updated';
-const NESTED = 'nested';
+use const Differ\Diff\ADDED;
+use const Differ\Diff\NESTED;
+use const Differ\Diff\UNCHANGED;
+use const Differ\Diff\REMOVED;
+use const Differ\Diff\UPDATED;
 
 function format(array $dict)
 {
