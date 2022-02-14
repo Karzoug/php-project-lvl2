@@ -21,39 +21,39 @@ function step(array $dict, int $level)
                 : getIndent($level + 1, REMOVED)   . $node["key"] . ": ";
 
             if (is_array($node["before"])) {
-                $acc[] = $line . "{";
+                array_push($acc, $line . "{");
 
                 $accInside = getChildrenTree($node["before"], $level + 1);
                 $acc = [...$acc, ...$accInside];
 
-                $acc[] = getIndent($level + 1) . "}";
+                array_push($acc, getIndent($level + 1) . "}");
             } else {
-                $acc[] = $line . toString($node["before"]);
+                array_push($acc, $line . toString($node["before"]));
             }
         }
 
         if ($node["status"] === UPDATED || $node["status"] === ADDED) {
             $line = getIndent($level + 1, ADDED) . $node["key"] . ": ";
             if (is_array($node["after"])) {
-                $acc[] = $line . "{";
+                array_push($acc, $line . "{");
 
                 $accInside = getChildrenTree($node["after"], $level + 1);
                 $acc = [...$acc, ...$accInside];
 
-                $acc[] = getIndent($level + 1) . "}";
+                array_push($acc, getIndent($level + 1) . "}");
             } else {
-                $acc[] = $line . toString($node["after"]);
+                array_push($acc, $line . toString($node["after"]));
             }
         }
 
         if ($node["status"] === NESTED) {
             $line = getIndent($level + 1, NESTED) . $node["key"] . ": ";
 
-            $acc[] = $line . "{";
+            array_push($acc, $line . "{");
             $accInside = step($node["children"], $level + 1);
             $acc = [...$acc, ...$accInside];
 
-            $acc[] = getIndent($level + 1) . "}";
+            array_push($acc, getIndent($level + 1) . "}");
         }
 
         return $acc;
@@ -62,21 +62,21 @@ function step(array $dict, int $level)
 
 function getChildrenTree(array $tree, int $level)
 {
-    $acc = [];
-    foreach ($tree as $key => $value) {
+    $result = collect($tree)->reduce(function ($acc, $value, $key) use ($level) {
         $line = getIndent($level + 1) . $key . ": ";
 
         if (is_array($value)) {
-            $acc[] = $line . "{";
+            $acc->push($line . "{");
             $accInside = getChildrenTree($value, $level + 1);
-            $acc = [...$acc, ...$accInside];
-            $acc[] = getIndent($level + 1) . "}";
+            $acc = $acc->merge($accInside);
+            $acc->push(getIndent($level + 1) . "}");
         } else {
-            $acc[] = $line . toString($value);
+            $acc->push($line . toString($value));
         }
-    }
+        return $acc;
+    }, collect([]));
 
-    return $acc;
+    return $result->all();
 }
 
 function getIndent(int $level, string $status = UNCHANGED)

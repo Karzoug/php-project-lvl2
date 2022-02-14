@@ -17,14 +17,14 @@ function step(array $dict, string $path)
 {
     return array_reduce($dict, function ($acc, $node) use ($path) {
         if ($node["status"] === REMOVED) {
-            $acc[] = "Property '" . $path . $node['key'] . "' was removed";
+            array_push($acc, "Property '" . $path . $node['key'] . "' was removed");
         }
         if ($node["status"] === ADDED) {
-            $acc[] = "Property '" . $path . $node['key'] . "' was added with value: " . toString($node["after"]);
+            array_push($acc, "Property '" . $path . $node['key'] . "' was added with value: " . toString($node["after"]));
         }
         if ($node["status"] === UPDATED) {
-            $acc[] = "Property '" . $path . $node['key'] . "' was updated. From " .
-                toString($node["before"]) . " to " . toString($node["after"]);
+            array_push($acc, "Property '" . $path . $node['key'] . "' was updated. From " .
+                toString($node["before"]) . " to " . toString($node["after"]));
         }
 
         if ($node["status"] === NESTED) {
