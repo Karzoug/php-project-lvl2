@@ -15,25 +15,27 @@ function format(array $dict)
 
 function step(array $dict, string $path)
 {
-    return array_reduce($dict, function ($acc, $node) use ($path) {
+    $result = array_reduce($dict, function ($acc, $node) use ($path) {
         if ($node["status"] === REMOVED) {
-            array_push($acc, "Property '" . $path . $node['key'] . "' was removed");
+            $acc->push("Property '" . $path . $node['key'] . "' was removed");
         }
         if ($node["status"] === ADDED) {
-            array_push($acc, "Property '" . $path . $node['key'] . "' was added with value: " . toString($node["after"]));
+            $acc->push($acc, "Property '" . $path . $node['key'] . "' was added with value: " . toString($node["after"]));
         }
         if ($node["status"] === UPDATED) {
-            array_push($acc, "Property '" . $path . $node['key'] . "' was updated. From " .
+            $acc->push($acc, "Property '" . $path . $node['key'] . "' was updated. From " .
                 toString($node["before"]) . " to " . toString($node["after"]));
         }
 
         if ($node["status"] === NESTED) {
             $accInside = step($node["children"], ($path . $node['key'] . "."));
-            $acc = [...$acc, ...$accInside];
+            $acc = $acc->merge($accInside);
         }
 
         return $acc;
-    }, []);
+    }, collect[]);
+
+    return $result->all();
 }
 
 function toString(mixed $value)
