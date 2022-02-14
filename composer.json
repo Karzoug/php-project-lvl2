@@ -3,7 +3,7 @@
     "require": {
         "docopt/docopt": "^1.0",
         "symfony/yaml": "^6.0",
-        "illuminate/collections": "^9.0"
+        "illuminate/collections": "^8.22"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
