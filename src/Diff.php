@@ -35,7 +35,7 @@ function getDiff(array $dict1, array $dict2)
             return $acc;
         }
 
-        if (is_array($dict1[$key]) ^ is_array($dict2[$key])) {
+        if (is_array($dict1[$key]) ^ is_array($dict2[$key])) { /** @phpstan-ignore-line */
             $acc->push([
                 "key" => $key,
                 "before" => $dict1[$key],

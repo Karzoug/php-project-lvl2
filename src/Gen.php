@@ -15,7 +15,7 @@ function run()
 
     $diff = genDiff($cliData["fileName1"], $cliData["fileName2"], $cliData["format"]);
 
-    Cli\output($diff);
+    Cli\output($diff); /** @phpstan-ignore-line */
 }
 
 function genDiff(string $fileName1, string $fileName2, string $formatOutput = "stylish")

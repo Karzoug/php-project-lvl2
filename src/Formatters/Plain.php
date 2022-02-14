@@ -29,7 +29,7 @@ function step(array $dict, string $path)
 
         if ($node["status"] === NESTED) {
             $accInside = step($node["children"], ($path . $node['key'] . "."));
-            $acc = $acc->merge($accInside);
+            $acc = $acc->merge($accInside); /** @phpstan-ignore-line */
         }
 
         return $acc;

@@ -24,7 +24,7 @@ function step(array $dict, int $level)
                 $acc->push($line . "{");
 
                 $accInside = getChildrenTree($node["before"], $level + 1);
-                $acc = $acc->merge($accInside);
+                $acc = $acc->merge($accInside); /** @phpstan-ignore-line */
 
                 $acc->push(getIndent($level + 1) . "}");
             } else {
@@ -38,7 +38,7 @@ function step(array $dict, int $level)
                 $acc->push($line . "{");
 
                 $accInside = getChildrenTree($node["after"], $level + 1);
-                $acc = $acc->merge($accInside);
+                $acc = $acc->merge($accInside); /** @phpstan-ignore-line */
 
                 $acc->push(getIndent($level + 1) . "}");
             } else {
@@ -51,7 +51,7 @@ function step(array $dict, int $level)
 
             $acc->push($line . "{");
             $accInside = step($node["children"], $level + 1);
-            $acc = $acc->merge($accInside);
+            $acc = $acc->merge($accInside); /** @phpstan-ignore-line */
 
             $acc->push(getIndent($level + 1) . "}");
         }
@@ -70,7 +70,7 @@ function getChildrenTree(array $tree, int $level)
         if (is_array($value)) {
             $acc->push($line . "{");
             $accInside = getChildrenTree($value, $level + 1);
-            $acc = $acc->merge($accInside);
+            $acc = $acc->merge($accInside); /** @phpstan-ignore-line */
             $acc->push(getIndent($level + 1) . "}");
         } else {
             $acc->push($line . toString($value));
