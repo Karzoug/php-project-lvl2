@@ -20,10 +20,10 @@ function step(array $dict, string $path)
             $acc->push("Property '" . $path . $node['key'] . "' was removed");
         }
         if ($node["status"] === ADDED) {
-            $acc->push($acc, "Property '" . $path . $node['key'] . "' was added with value: " . toString($node["after"]));
+            $acc->push("Property '" . $path . $node['key'] . "' was added with value: " . toString($node["after"]));
         }
         if ($node["status"] === UPDATED) {
-            $acc->push($acc, "Property '" . $path . $node['key'] . "' was updated. From " .
+            $acc->push("Property '" . $path . $node['key'] . "' was updated. From " .
                 toString($node["before"]) . " to " . toString($node["after"]));
         }
 
@@ -33,7 +33,7 @@ function step(array $dict, string $path)
         }
 
         return $acc;
-    }, collect[]);
+    }, collect([]));
 
     return $result->all();
 }
